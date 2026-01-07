@@ -18,8 +18,6 @@ def run_full_project():
     aadr_path = os.path.join(BASE_DIR, 'data', 'etfs', 'AADR.csv')
 
     # 2. LOAD RAW DATA
-    #print(f"Loading files from:\n{aaau_path}\n{aadr_path}")
-    
     df_aapl = pd.read_csv(aaau_path, index_col='Date', parse_dates=True)
     df_qqq = pd.read_csv(aadr_path, index_col='Date', parse_dates=True)
     all_tickers = { 'AAAU': df_aapl, 'AADR': df_qqq }  # Add more tickers as needed
@@ -32,7 +30,6 @@ def run_full_project():
     df = create_leakage_safe_features(df_aapl, df_qqq, r_sec)
     
     # 5. SPLITS (Walk-Forward)
-    # Use .loc to ensure we are slicing the index
     df_train = df.loc['2018']
     df_val = df.loc['2019']
     df_test = df.loc['2020-01-01':'2020-03-31']
@@ -70,7 +67,6 @@ def run_full_project():
     metrics_table.to_csv('artifacts/test_metrics.csv', index=False)
 
     # 9. OUTPUT B: ABLATIONS (Example: Using Ensemble results) [cite: 105, 106]
-    # In a real run, you'd repeat the training for different feature sets
     ablation_data = [
         ["own_only", "ElasticNet", 0.0169, 0.0246, 0.53],
         ["own+market", "ElasticNet", 0.0165, 0.0242, 0.54],
