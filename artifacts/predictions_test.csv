@@ -1,0 +1,2 @@
+date,ticker,r_hat_next,p_hat_next,decision,notes
+2020-02-27,AAPL,0.0042,281.63,Hold,"market down, sector down; low-confidence"

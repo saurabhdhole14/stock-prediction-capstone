@@ -1,0 +1,4 @@
+feature_set,model,MAE,RMSE,SignAcc
+own_only,ElasticNet,0.0169,0.0246,0.53
+own+market,ElasticNet,0.0165,0.0242,0.54
+own+market+sector,ElasticNet,0.0162,0.0239,0.55
